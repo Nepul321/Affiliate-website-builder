@@ -86,15 +86,18 @@ def UserDeleteView(request):
 
 @not_active_user
 def ActivateAccountView(request, token):
-	try:
-		user = User.objects.get(key=token)
-		user.is_active = True
-		user.save()
-	except:
-		return redirect('/')
-	template = 'activate.html'
-	context = {}
-	return render(request, template, context)
+        try:
+            user = User.objects.get(key=token)
+            if user.is_active == False:
+                user.is_active = True
+                user.save()
+            else:
+                return redirect('/')
+        except:
+            return redirect('/')
+        template = 'activate.html'
+        context = {}
+        return render(request, template, context)
 
 @login_required
 @have_purchased
