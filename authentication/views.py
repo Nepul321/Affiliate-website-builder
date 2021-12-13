@@ -111,5 +111,7 @@ def ActivateAccountView(request, token):
 @have_purchased
 def purchaseview(request):
     template = 'payments/purchase.html'
-    context = {}
+    context = {
+        
+    }
     return render(request, template, context)
