@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    {% if user.is_authenticated %}
+    <h1>You are logged in</h1>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+    <h1>Login</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary">Login</button>
+    </form>
+    {% block js %}
+    <script>
+        const username_input = document.getElementById('id_username');
+        const password_input = document.getElementById('id_password');
+    
+        username_input.classList.add('form-control');
+        password_input.classList.add('form-control');
+    </script>
+    {% endblock js %}
+    {% endif %}
+</div>
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ Account settings
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+<h1>Account settings</h1>
+<form action="" method="POST">
+     {% csrf_token %}
+     {{ form.as_p }}
+     <button class="btn btn-primary">Save</button>
+</form>
+     <div class="card my-5">
+          <div class="card-header">
+               <h3>Delete account</h3>
+          </div>
+          <div class="card-body">
+             <p>Not satisfied ? Delete your account</p>
+             <a href="{% url 'delete-user' %}" class="btn btn-outline-danger">Delete</a>
+
+          </div>
+     </div>
+</div>
+{% endblock content %}

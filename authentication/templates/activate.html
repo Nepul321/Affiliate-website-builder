@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Account activated
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="card py-3">
+        <div class="card-body">
+            <h2>Congrats We have activated your account</h2>
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Purchase
+{% endblock title %}
+
+{% block content %}
+<style>
+    .card {
+        width: 50%; 
+        background-color: lightblue; 
+        color: white; 
+        cursor: pointer;
+        transition: 0.1s linear all;
+    }
+    .card:hover {
+        background-color: darkblue;
+        color: white;
+    }
+</style>
+<div class="container my-5">
+    <center>
+    <h1>Purchase</h1>
+    <p style="font-size: 20px;">Invest in yourself to build your own affiliate websites.</p>
+    <h1>Membership includes</h1>
+    <p style="font-size : 20px;">Unlimited Affiliate websites</p>
+    <p style="font-size : 20px;">Unlimited Affiliate products</p>
+    <p style="font-size : 20px;">Unlimited Access to blog posts</p>
+    <div class="card">
+        <div class="card-body">
+            <p style="font-size: 25px; font-weight: bold;">Lifetime</p>
+            <p style="font-size: 25px;">$25</p>
+            <hr style="width: 50%;"/>
+            <p style="font-size: 25px;">Unlimited products and websites</p>
+        </div>
+    </div>
+</center>
+</div>
+{% endblock content %}

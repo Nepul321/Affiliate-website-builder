@@ -1,0 +1,101 @@
+{% extends 'website/base.html' %}
+
+{% block title %}
+{{ website.name|capfirst }}
+{% endblock title %}
+
+{% block content %}
+<header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{{ website.image1.url }}" class="d-block" alt="..." height="605vh" width="100%">
+          </div>
+          <div class="carousel-item">
+            <img src="{{ website.image2.url }}" class="d-block" alt="..." height="605vh" width="100%">
+          </div>
+          <div class="carousel-item">
+            <img src="{{ website.image3.url }}" class="d-block" alt="..." height="605vh" width="100%">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+</header>
+
+<section>
+    <center>
+    <div class="container px-4 px-lg-5 mt-5">
+        <h1>Products</h1>
+        <hr />
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {% for product in products %}
+        <div class="col mb-5">
+          <div class="card h-100">
+              <!-- Product image-->
+              <img class="card-img-top" src="{{ product.image.url }}" alt="..." />
+              <!-- Product details-->
+              <div class="card-body p-4">
+                  <div class="text-center">
+                      <!-- Product name-->
+                      <h5 class="fw-bolder">{{ product.name }}</h5>
+
+                      <small>
+                         {{ product.description|safe }}
+                      </small>
+                   
+                  </div>
+              </div>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                  <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ product.link }}" target="_blank">View</a></div>
+              </div>
+          </div>
+      </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% if products %}
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      
+   
+  
+  {% if products.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+  
+      <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}">Previous</a></li>
+      
+  {% endif %}
+  
+  {% for i in nums %}
+      <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+  
+  {% endfor %}
+  
+  
+  {% if products.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">Next</a></li>
+  
+      <li class="page-item"><a class="page-link" href="?page={{ products.paginator.num_pages }}">Last &raquo</a></li>
+  
+  {% endif %}
+  
+   </ul>
+  </nav>
+  {% endif %}
+</center>
+</section>
+
+{% endblock content %}

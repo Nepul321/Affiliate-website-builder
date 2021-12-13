@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Update {{ website.name }}
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <h1>Update website</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary">Save</button>
+    </form>
+</div>
+<div class="container my-5">
+    <h1>Products</h1>
+    {% for product in products %}
+      <div class="card mb-3">
+          <div class="card-body">
+            <p style="font-size: 25px;">{{ product.name }}</p>
+               {% if product.id in current %}
+                   <form action="/remove/{{ product.id }}/from/{{ website.id }}/" method="POST">
+                    {% csrf_token %}
+                    <div class="btn-group">
+                        <a href="" class="btn btn-primary">View</a>
+                        <a href="" class="btn btn-secondary">Update</a>
+                        <button class="btn btn-danger">Remove from website</button>
+                       </div>
+                   </form>
+               {% else %}
+               <form action="/add/{{ product.id }}/to/{{ website.id }}/" method="POST">
+                {% csrf_token %}
+                <div class="btn-group">
+                    <a href="" class="btn btn-primary">View</a>
+                    <a href="" class="btn btn-secondary">Update</a>
+                    <button class="btn btn-dark">Add to website</button>
+                   </div>
+               </form>
+               {% endif %}
+          </div>
+      </div>
+    {% endfor %}
+</div>
+{% endblock content %}

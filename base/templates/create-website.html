@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create website
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <h1>Create website</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary">Create</button>
+    </form>
+</div>
+{% endblock content %}

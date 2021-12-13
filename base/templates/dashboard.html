@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <h1>My websites</h1>
+    <hr />
+    <a href="{% url 'create' %}" class="mb-3 btn btn-outline-primary">New website</a>
+    {% for website in websites %}
+     <div class="card mb-3">
+         <div class="card-body">
+             <p style="font-size: 25px;">{{ website.name }}</p>
+             <form action="{% url 'delete' website.id %}" method="post">
+                 {% csrf_token %}
+                <div class="btn-group">
+                    <a href="{% url 'website-info' website.id %}" class="btn btn-primary">View</a>
+                    <a href="{% url 'update' website.id %}" class="btn btn-secondary">Update</a>
+                    <button class="btn btn-danger">Delete</button>
+                 </div>
+             </form>
+         </div>
+     </div>
+    {% endfor %}
+    <h1>Products</h1>
+    <hr />
+    <a href="{% url 'create-product' %}" class="mb-3 btn btn-outline-secondary">New product</a>
+    {% for product in products %}
+     <div class="card mb-3">
+         <div class="card-body">
+             <p style="font-size: 25px;">{{ product.name }}</p>
+                 <form action="{% url 'delete-product' product.id %}" method="POST">
+                     {% csrf_token %}
+                     <div class="btn-group">
+                        <a href="{% url 'product-info' product.id %}" class="btn btn-primary">View</a>
+                        <a href="{% url 'update-product' product.id %}" class="btn btn-secondary">Update</a>
+                        <button class="btn btn-danger">Delete</button>
+                    </div>
+                 </form>
+         </div>
+     </div>
+    {% endfor %}
+    {% if length >= 5 %}
+    <a href="" class="btn btn-outline-secondary">All products</a>
+   {% endif %}
+</div>
+
+{% endblock content %}
