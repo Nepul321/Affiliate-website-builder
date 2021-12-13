@@ -55,7 +55,9 @@ def PasswordView(request):
             update_session_auth_hash(request, form.user)
             return redirect('account')
 
-    context = {'form': form}
+    context = {
+        'form': form
+        }
     return render(request, template, context)
 
 
@@ -68,7 +70,9 @@ def AccountView(request):
         if form.is_valid():
             form.save()
             return redirect('account')
-    context = {'form': form}
+    context = {
+        'form': form
+        }
     return render(request, template, context)
 
 
@@ -81,7 +85,9 @@ def UserDeleteView(request):
         user_object.delete()
         return redirect('home')
 
-    context = {}
+    context = {
+
+    }
     return render(request, template, context)
 
 @not_active_user
@@ -96,7 +102,9 @@ def ActivateAccountView(request, token):
         except:
             return redirect('/')
         template = 'activate.html'
-        context = {}
+        context = {
+
+        }
         return render(request, template, context)
 
 @login_required
